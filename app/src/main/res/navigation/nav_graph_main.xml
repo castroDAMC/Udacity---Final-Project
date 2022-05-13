@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/main_expanses"
-        android:name="personal.udacity.damc.com.cooperativeexpenses.expenses.FragmentMainPageExpenses"
+        android:name="personal.udacity.damc.com.cooperativeexpenses.expenses.view.FragmentMainPageExpenses"
         android:label="Expanses" />
 
 </navigation>

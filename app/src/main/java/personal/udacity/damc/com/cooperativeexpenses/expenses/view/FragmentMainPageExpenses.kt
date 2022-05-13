@@ -1,0 +1,55 @@
+package personal.udacity.damc.com.cooperativeexpenses.expenses.view
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
+import personal.udacity.damc.com.cooperativeexpenses.R
+import personal.udacity.damc.com.cooperativeexpenses.databinding.FragmentMainPageExpensesBinding
+import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
+import personal.udacity.damc.com.cooperativeexpenses.expenses.view.adapters.MainExpensesAdapter
+import personal.udacity.damc.com.cooperativeexpenses.expenses.viewmodel.ExpensesViewModel
+
+
+class FragmentMainPageExpenses : Fragment() {
+
+    private lateinit var binding: FragmentMainPageExpensesBinding
+    private val viewModel by viewModels<ExpensesViewModel>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        setupBinding(inflater, container)
+        setRecyclerViewConfiguration()
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    private fun setRecyclerViewConfiguration() {
+        binding.recyclerView.adapter = MainExpensesAdapter(
+            MutableLiveData(viewModel._listOfExpenses.value),
+            {setClickItemFunction(it)}
+        )
+    }
+
+    private fun setupBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_main_page_expenses, container, false)
+
+        binding.lifecycleOwner = this
+    }
+
+    private fun setClickItemFunction(expense: Expense) {
+        Toast.makeText(requireContext(), "Despesa = " + expense.name, Toast.LENGTH_SHORT).show()
+//        findNavController()
+//            .navigate(MainFragmentDirections.actionShowDetail(asteroid))
+    }
+}
