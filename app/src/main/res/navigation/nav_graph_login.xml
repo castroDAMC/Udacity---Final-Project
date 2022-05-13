@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/loginFragment">
+
+    <include app:graph="@navigation/nav_graph_main" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="personal.udacity.damc.com.cooperativeexpenses.login.LoginFragment"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_loginFragment_to_newUserFragment"
+            app:destination="@id/newUserFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newUserFragment"
+        android:name="personal.udacity.damc.com.cooperativeexpenses.login.LoginNewUserFragment"
+        android:label="Login New User" >
+        <action
+            android:id="@+id/action_newUserFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>

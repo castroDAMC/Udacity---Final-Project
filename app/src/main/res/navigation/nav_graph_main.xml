@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_main.xml"
+    app:startDestination="@id/main_expanses">
+
+
+    <fragment
+        android:id="@+id/main_expanses"
+        android:name="personal.udacity.damc.com.cooperativeexpenses.expenses.FragmentMainPageExpenses"
+        android:label="Expanses" />
+
+</navigation>
