@@ -24,4 +24,5 @@
     <string name="expense_last_update">Ultimo Update</string>
     <string name="expanse_percentual">55%</string>
     <string name="expanse_last_update_date">DD/MM/AAAA</string>
+    <string name="add_new_expense_in_this_group">Add New Expense in this Group</string>
 </resources>

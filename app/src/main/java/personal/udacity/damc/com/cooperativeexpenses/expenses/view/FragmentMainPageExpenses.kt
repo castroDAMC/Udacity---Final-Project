@@ -9,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import personal.udacity.damc.com.cooperativeexpenses.R
 import personal.udacity.damc.com.cooperativeexpenses.databinding.FragmentMainPageExpensesBinding
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
+import personal.udacity.damc.com.cooperativeexpenses.expenses.model.GroupExpense
 import personal.udacity.damc.com.cooperativeexpenses.expenses.view.adapters.MainExpensesAdapter
 import personal.udacity.damc.com.cooperativeexpenses.expenses.viewmodel.ExpensesViewModel
 
@@ -35,7 +37,7 @@ class FragmentMainPageExpenses : Fragment() {
 
     private fun setRecyclerViewConfiguration() {
         binding.recyclerView.adapter = MainExpensesAdapter(
-            MutableLiveData(viewModel._listOfExpenses.value),
+            MutableLiveData(viewModel._listOfGroups.value),
             {setClickItemFunction(it)}
         )
     }
@@ -47,9 +49,9 @@ class FragmentMainPageExpenses : Fragment() {
         binding.lifecycleOwner = this
     }
 
-    private fun setClickItemFunction(expense: Expense) {
-        Toast.makeText(requireContext(), "Despesa = " + expense.name, Toast.LENGTH_SHORT).show()
-//        findNavController()
-//            .navigate(MainFragmentDirections.actionShowDetail(asteroid))
+    private fun setClickItemFunction(expense: GroupExpense) {
+        Toast.makeText(requireContext(), "Despesa = " + expense.groupName, Toast.LENGTH_SHORT).show()
+        findNavController().navigate(FragmentMainPageExpensesDirections.actionMainExpansesToFragmentInsideGroupExpense(expense.groupName))
+//        Navigation.findNavController(binding.root).navigate(R.id.action_main_expanses_to_fragmentInsideGroupExpense, expense.group)
     }
 }

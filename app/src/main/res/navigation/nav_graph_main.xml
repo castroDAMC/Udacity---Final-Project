@@ -8,6 +8,21 @@
     <fragment
         android:id="@+id/main_expanses"
         android:name="personal.udacity.damc.com.cooperativeexpenses.expenses.view.FragmentMainPageExpenses"
-        android:label="Expanses" />
+        android:label="Expanses" >
+        <action
+            android:id="@+id/action_main_expanses_to_fragmentInsideGroupExpense"
+            app:destination="@id/fragmentInsideGroupExpense"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInsideGroupExpense"
+        android:name="personal.udacity.damc.com.cooperativeexpenses.expenses.view.FragmentInsideGroupExpense"
+        android:label="FragmentInsideGroupExpense" >
+
+        <argument
+            android:name="expenseGroupName"
+            app:argType="string"/>
+
+    </fragment>
 
 </navigation>
