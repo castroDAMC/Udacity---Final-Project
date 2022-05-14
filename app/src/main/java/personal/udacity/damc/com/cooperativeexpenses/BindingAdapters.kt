@@ -2,11 +2,23 @@ package personal.udacity.damc.com.cooperativeexpenses
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import personal.udacity.damc.com.cooperativeexpenses.expenses.model.getExpenseUsedByPercentage
 
 @BindingAdapter("displayTargetByGroup")
 fun bindTargetByGroup(textView: TextView, target: String){
-    val context = textView.context
     textView.text = "Target: $$target"
+}
+
+@BindingAdapter("displayValueByExpense")
+fun bindValueByExpense(textView: TextView, target: String){
+    val context = textView.context
+    textView.text = "Used: $$target"
+}
+
+@BindingAdapter("valueOfExpense", "valueOfTarget")
+fun displayPercentageExpense(textView: TextView, valueOfExpense: String, valueOfTarget: String){
+    val percentage = getExpenseUsedByPercentage(valueOfExpense, valueOfTarget)
+    textView.text = "$percentage% from Target"
 }
 
 @BindingAdapter("displayPercentage")
@@ -19,5 +31,9 @@ fun displayPercentage(textView: TextView, percentage: String){
         R.color.red
     }
     textView.setTextColor(textView.context.getColor(color))
-    textView.text = "$percentage%"
+    textView.text = "Already used: $percentage%"
+}
+@BindingAdapter("displayUserName")
+fun displayUserName(textView: TextView, name: String){
+    textView.text = "Added by $name"
 }

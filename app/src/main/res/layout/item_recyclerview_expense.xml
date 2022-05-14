@@ -39,47 +39,61 @@
                     android:id="@+id/txt_item_expanse_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/expanse_name"
+                    android:fontFamily="@font/roboto"
                     android:text="@{group.groupName}"
+                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/expanse_name" />
 
                 <TextView
                     android:id="@+id/txt_item_expanse_target"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/roboto"
                     app:displayTargetByGroup="@{group.target}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/txt_item_expanse_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_name"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    tools:text="Target: $500" />
 
                 <TextView
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_updatestring"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/expense_last_update"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name" />
 
                 <TextView
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_percentual"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14sp"
                     app:displayPercentage="@{group.percentage}"
-                    app:layout_constraintEnd_toEndOf="@+id/txt_item_expanse_target"
-                    app:layout_constraintStart_toStartOf="@+id/txt_item_expanse_target"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_target" />
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_item_expanse_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_date"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_target"
+                    tools:text="Used: 60%" />
 
                 <TextView
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="@{group.lastUpdate}"
-                    tools:text="@string/expanse_last_update_date"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_updatestring"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name"
+                    tools:text="@string/expanse_last_update_date" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

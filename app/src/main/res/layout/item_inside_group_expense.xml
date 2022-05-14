@@ -4,6 +4,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="expense"
+            type="personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense" />
+
+        <variable
+            name="group_target"
+            type="String" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -33,47 +43,88 @@
                     android:id="@+id/txt_item_expanse_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/expanse_name"
+                    android:text="@{expense.name}"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/expanse_name" />
 
                 <TextView
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_target"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Valor = R$50,00"
+                    app:displayValueByExpense="@{expense.value}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_name"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Valor = R$50,00" />
 
                 <TextView
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_date"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_target"
+                    app:valueOfExpense="@{expense.value}"
+                    app:valueOfTarget="@{group_target}"
+                    tools:text="10% da Meta" />
+
+                <TextView
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_updatestring"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dia do gasto:"
+                    android:text="@string/expense_date"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name" />
 
                 <TextView
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="@string/expanse_last_update_date"
+                    tools:text="@string/expanse_last_update_date"
+                    android:text="@{expense.date}"
                     app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_updatestring"
                     app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name" />
 
                 <TextView
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Adicionado por DOUG"
+                    tools:text="Adicionado por DOUG"
+                    app:displayUserName="@{expense.user}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_updatestring" />
 
                 <TextView
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/more_details"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <TextView
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"
                     android:id="@+id/editTextTextMultiLine"
+                    android:text="@{expense.explanation}"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:ems="10"
@@ -85,21 +136,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView3"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Justificativa: "
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10% da Meta"
-                    app:layout_constraintStart_toStartOf="@+id/txt_item_expanse_target"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_target" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

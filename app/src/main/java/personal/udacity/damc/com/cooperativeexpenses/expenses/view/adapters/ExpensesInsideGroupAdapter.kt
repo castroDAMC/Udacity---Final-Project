@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import personal.udacity.damc.com.cooperativeexpenses.R
 import personal.udacity.damc.com.cooperativeexpenses.databinding.ItemInsideGroupExpenseBinding
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
+import personal.udacity.damc.com.cooperativeexpenses.expenses.model.getGroupExpenseSum
 
 class ExpensesInsideGroupAdapter(
     private val listOfExpenses: MutableLiveData<ArrayList<Expense>>
@@ -16,17 +17,13 @@ class ExpensesInsideGroupAdapter(
     class ViewHolder(private val binding: ItemInsideGroupExpenseBinding) :
         RecyclerView.ViewHolder(binding.root) {
         //
-        fun onBind(expense: Expense) {
+        fun onBind(expense: Expense, target: String) {
             binding.let {
-                it.txtItemExpanseDate.text = expense.date
-                it.txtItemExpanseTarget.text = expense.value
-                it.txtItemExpanseName.text = expense.name
-                it.editTextTextMultiLine.text = expense.explanation
-
+                it.expense = expense
+                it.groupTarget = target
                 it.executePendingBindings()
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,7 +38,8 @@ class ExpensesInsideGroupAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(listOfExpenses.value!![position])
+        val itemBind = listOfExpenses.value!![position]
+        holder.onBind(itemBind, getGroupExpenseSum(listOfExpenses.value!!,itemBind.group))
     }
 
     override fun getItemCount(): Int {

@@ -21,8 +21,10 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="expanse_name">Gastos com Gasolina</string>
     <string name="expanse_target">Meta = R$300,00</string>
-    <string name="expense_last_update">Ultimo Update</string>
+    <string name="expense_last_update">Last Update</string>
     <string name="expanse_percentual">55%</string>
     <string name="expanse_last_update_date">DD/MM/AAAA</string>
     <string name="add_new_expense_in_this_group">Add New Expense in this Group</string>
+    <string name="expense_date">Dia do gasto:</string>
+    <string name="more_details">More Details:</string>
 </resources>
