@@ -17,11 +17,17 @@ class ExpensesInsideGroupAdapter(
     class ViewHolder(private val binding: ItemInsideGroupExpenseBinding) :
         RecyclerView.ViewHolder(binding.root) {
         //
-        fun onBind(expense: Expense, target: String) {
+        fun onBind(expense: Expense, target: String, position: Int) {
+
             binding.let {
                 it.expense = expense
                 it.groupTarget = target
                 it.executePendingBindings()
+
+                it.cardVIew.setCardBackgroundColor(when{
+                    position%2 == 0 -> {itemView.context.getColor(R.color.gray_1)}
+                    else -> {itemView.context.getColor(R.color.gray_2)}
+                })
             }
         }
     }
@@ -39,7 +45,7 @@ class ExpensesInsideGroupAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemBind = listOfExpenses.value!![position]
-        holder.onBind(itemBind, getGroupExpenseSum(listOfExpenses.value!!,itemBind.group))
+        holder.onBind(itemBind, getGroupExpenseSum(listOfExpenses.value!!,itemBind.group), position)
     }
 
     override fun getItemCount(): Int {

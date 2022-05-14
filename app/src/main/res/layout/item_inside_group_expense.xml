@@ -19,6 +19,7 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardVIew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -43,19 +44,19 @@
                     android:id="@+id/txt_item_expanse_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="@{expense.name}"
                     android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/expanse_name" />
 
                 <TextView
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_target"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="12sp"
                     app:displayValueByExpense="@{expense.value}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -64,11 +65,11 @@
                     tools:text="Valor = R$50,00" />
 
                 <TextView
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_date"
@@ -78,57 +79,57 @@
                     tools:text="10% da Meta" />
 
                 <TextView
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_updatestring"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/expense_date"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name" />
 
                 <TextView
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    tools:text="@string/expanse_last_update_date"
+                    android:fontFamily="@font/roboto"
                     android:text="@{expense.date}"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_updatestring"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name"
+                    tools:text="@string/expanse_last_update_date" />
 
                 <TextView
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Adicionado por DOUG"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="12sp"
                     app:displayUserName="@{expense.user}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_updatestring" />
+                    app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_updatestring"
+                    tools:text="Adicionado por DOUG" />
 
                 <TextView
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/more_details"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <TextView
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/editTextTextMultiLine"
-                    android:text="@{expense.explanation}"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:ems="10"
+                    android:fontFamily="@font/roboto"
                     android:gravity="start|top"
+                    android:text="@{expense.explanation}"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
