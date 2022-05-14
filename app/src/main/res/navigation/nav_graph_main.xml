@@ -20,8 +20,8 @@
         android:label="FragmentInsideGroupExpense" >
 
         <argument
-            android:name="expenseGroupName"
-            app:argType="string"/>
+            android:name="expenseGroup"
+            app:argType="personal.udacity.damc.com.cooperativeexpenses.expenses.model.GroupExpense"/>
 
     </fragment>
 

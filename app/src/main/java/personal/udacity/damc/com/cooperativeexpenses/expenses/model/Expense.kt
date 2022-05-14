@@ -6,5 +6,6 @@ data class Expense(
     val name: String,
     val value: String,
     val date: String,
-    val user: String
+    val user: String,
+    val explanation: String
 )

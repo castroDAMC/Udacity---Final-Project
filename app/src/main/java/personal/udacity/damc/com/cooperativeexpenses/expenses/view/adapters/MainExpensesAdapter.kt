@@ -19,12 +19,11 @@ class MainExpensesAdapter(
         RecyclerView.ViewHolder(binding.root) {
         //
         fun onBind(expense: GroupExpense, onClickListener: (expense: GroupExpense) -> Unit) {
-            binding.let {
-                it.txtItemExpanseDate.text = expense.lastUpdate
-                it.txtItemExpanseTarget.text = expense.target
-                it.txtItemExpansePercentual.text = expense.percentage
-                it.txtItemExpanseName.text = expense.groupName
 
+            binding.group = expense
+
+            binding.let {
+                it.group = expense
                 it.executePendingBindings()
             }
 

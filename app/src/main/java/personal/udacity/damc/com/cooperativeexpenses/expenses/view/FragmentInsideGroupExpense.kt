@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import personal.udacity.damc.com.cooperativeexpenses.R
 import personal.udacity.damc.com.cooperativeexpenses.databinding.FragmentInsideGroupExpenseBinding
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
+import personal.udacity.damc.com.cooperativeexpenses.expenses.model.GroupExpense
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.getGroupExpenseSum
 import personal.udacity.damc.com.cooperativeexpenses.expenses.view.adapters.ExpensesInsideGroupAdapter
 import personal.udacity.damc.com.cooperativeexpenses.expenses.viewmodel.ExpensesViewModel
@@ -20,13 +21,13 @@ class FragmentInsideGroupExpense : Fragment() {
 
     private lateinit var binding: FragmentInsideGroupExpenseBinding
     private val viewModel by viewModels<ExpensesViewModel>()
-    private var expenseGroup: String = ""
+    private lateinit var expenseGroup: GroupExpense
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        expenseGroup = FragmentInsideGroupExpenseArgs.fromBundle(requireArguments()).expenseGroupName
+        expenseGroup = FragmentInsideGroupExpenseArgs.fromBundle(requireArguments()).expenseGroup
 
         setupBinding(inflater, container)
         setRecyclerViewConfiguration()
@@ -34,18 +35,19 @@ class FragmentInsideGroupExpense : Fragment() {
 //        return binding.root
 
         binding.floatingActionButton.setOnClickListener {
-            getGroupExpenseSum(viewModel._listOfExpenses.value!!, expenseGroup)
+//            getGroupExpenseSum(viewModel._listOfExpenses.value!!, expenseGroup)
             Toast.makeText(requireContext(), "CLICKED", Toast.LENGTH_SHORT).show()
         }
 
-        binding.includedLayout.txtItemExpanseName.text = expenseGroup
+        binding.includedLayout.txtItemExpanseName.text = expenseGroup.groupName
+        binding.includedLayout.group = expenseGroup
 
         return binding.root
     }
 
     private fun setRecyclerViewConfiguration() {
         val filteredList = viewModel._listOfExpenses.value !!.filter {
-            it.group == expenseGroup
+            it.group == expenseGroup.groupName
         }
         binding.recyclerView2.adapter = ExpensesInsideGroupAdapter(
             MutableLiveData(filteredList as ArrayList<Expense>?)

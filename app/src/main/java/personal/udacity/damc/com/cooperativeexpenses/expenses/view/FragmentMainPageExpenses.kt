@@ -46,12 +46,13 @@ class FragmentMainPageExpenses : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_main_page_expenses, container, false)
 
+
         binding.lifecycleOwner = this
     }
 
     private fun setClickItemFunction(expense: GroupExpense) {
         Toast.makeText(requireContext(), "Despesa = " + expense.groupName, Toast.LENGTH_SHORT).show()
-        findNavController().navigate(FragmentMainPageExpensesDirections.actionMainExpansesToFragmentInsideGroupExpense(expense.groupName))
+        findNavController().navigate(FragmentMainPageExpensesDirections.actionMainExpansesToFragmentInsideGroupExpense(expense))
 //        Navigation.findNavController(binding.root).navigate(R.id.action_main_expanses_to_fragmentInsideGroupExpense, expense.group)
     }
 }

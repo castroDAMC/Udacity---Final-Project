@@ -20,7 +20,8 @@ class ExpensesInsideGroupAdapter(
             binding.let {
                 it.txtItemExpanseDate.text = expense.date
                 it.txtItemExpanseTarget.text = expense.value
-                it.txtItemExpanseName.text = expense.group
+                it.txtItemExpanseName.text = expense.name
+                it.editTextTextMultiLine.text = expense.explanation
 
                 it.executePendingBindings()
             }
