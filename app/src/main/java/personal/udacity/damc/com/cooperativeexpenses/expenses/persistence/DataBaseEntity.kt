@@ -13,8 +13,8 @@ abstract class ExpensesDatabase : RoomDatabase() {
 
 @Entity
 data class ExpensesDataBaseEntity constructor(
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val group: String,
     val name: String,
     val value: String,
@@ -44,7 +44,7 @@ interface ExpensesDAO{
 fun List<ExpensesDataBaseEntity>.asDomainModel(): List<Expense>{
     return map{
         Expense(
-            id = it.id,
+            id = it.id.toString(),
             group = it.group,
             name = it.name,
             value = it.value,

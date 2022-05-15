@@ -17,24 +17,14 @@ class ExpensesRepository(private val database: ExpensesDatabase) {
     var listOfExpenses: LiveData<List<Expense>> = Transformations.map(database.userDao().getAll()){it.asDomainModel()}
 
 
-
-    fun getAll(){
-        scopeOfIO.launch {
-            val tempList = database.userDao().getAll()
-
-            val tempAsDomainList =  tempList.map {
-                it.asDomainModel()
-            }
-        }
-    }
-
-
     fun addExpense(expense: Expense) {
         scopeOfIO.launch {
+
+
             database.userDao()
                 .insertOneExpense(
                     ExpensesDataBaseEntity(
-                        expense.id,
+                        0,
                         expense.group,
                         expense.name,
                         expense.value,

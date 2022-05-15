@@ -1,8 +1,8 @@
 package personal.udacity.damc.com.cooperativeexpenses.expenses.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.*
-import kotlinx.coroutines.launch
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.GroupExpense
 import personal.udacity.damc.com.cooperativeexpenses.expenses.persistence.ExpensesRepository
@@ -35,15 +35,7 @@ class ExpensesViewModel(application: Application) : AndroidViewModel(application
 
     }
 
-    fun addExpense(expense: Expense){
-        repository.addExpense(expense)
-    }
-
     fun addNewExpense(){
         repository.addExpense(newExpense.value!!)
-    }
-
-    fun getAll(){
-        repository.getAll()
     }
 }
