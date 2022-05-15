@@ -11,7 +11,7 @@ import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.getGroupExpenseSum
 
 class ExpensesInsideGroupAdapter(
-    private val listOfExpenses: MutableLiveData<ArrayList<Expense>>
+    private val listOfExpenses: MutableLiveData<List<Expense>>
 ) : RecyclerView.Adapter<ExpensesInsideGroupAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: ItemInsideGroupExpenseBinding) :
@@ -45,11 +45,16 @@ class ExpensesInsideGroupAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemBind = listOfExpenses.value!![position]
-        holder.onBind(itemBind, getGroupExpenseSum(listOfExpenses.value!!,itemBind.group), position)
+        holder.onBind(itemBind, getGroupExpenseSum(listOfExpenses.value!! as ArrayList<Expense>,itemBind.group), position)
     }
 
     override fun getItemCount(): Int {
         return listOfExpenses.value?.size!!
+    }
+
+    fun insertAllExpenses(it: List<Expense>) {
+        listOfExpenses.value = it
+        notifyDataSetChanged()
     }
 
 }

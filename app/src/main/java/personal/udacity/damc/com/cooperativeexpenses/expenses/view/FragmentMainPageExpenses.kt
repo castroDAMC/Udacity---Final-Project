@@ -1,5 +1,6 @@
 package personal.udacity.damc.com.cooperativeexpenses.expenses.view
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import personal.udacity.damc.com.cooperativeexpenses.R
@@ -22,7 +24,9 @@ import personal.udacity.damc.com.cooperativeexpenses.expenses.viewmodel.Expenses
 class FragmentMainPageExpenses : Fragment() {
 
     private lateinit var binding: FragmentMainPageExpensesBinding
-    private val viewModel by viewModels<ExpensesViewModel>()
+    private val viewModel by lazy {
+        ViewModelProvider(this)[ExpensesViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
