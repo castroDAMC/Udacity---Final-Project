@@ -6,7 +6,7 @@
     <string name="first_access">Primeiro acesso?</string>
     <string name="first_access_click_here">Clique Aqui</string>
     <string name="login_image_no_action">Generic Image</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -27,4 +27,6 @@
     <string name="add_new_expense_in_this_group">Add New Expense in this Group</string>
     <string name="expense_date">Dia do gasto:</string>
     <string name="more_details">More Details:</string>
+    <string name="txt_generic">Generic Text</string>
+    <string name="edt_generic">Generic Text</string>
 </resources>

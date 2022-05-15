@@ -22,7 +22,23 @@
         <argument
             android:name="expenseGroup"
             app:argType="personal.udacity.damc.com.cooperativeexpenses.expenses.model.GroupExpense"/>
+        <action
+            android:id="@+id/action_fragmentInsideGroupExpense_to_fragmentNewExpense"
+            app:destination="@id/fragmentNewExpense" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNewExpense"
+        android:name="personal.udacity.damc.com.cooperativeexpenses.expenses.view.FragmentNewExpense"
+        android:label="FragmentNewExpense" >
+        <argument
+            android:name="expenseGroup"
+            app:argType="personal.udacity.damc.com.cooperativeexpenses.expenses.model.GroupExpense"/>
+        <action
+            android:id="@+id/action_fragmentNewExpense_to_fragmentInsideGroupExpense"
+            app:destination="@id/fragmentInsideGroupExpense"
+            app:popUpTo="@id/fragmentInsideGroupExpense"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

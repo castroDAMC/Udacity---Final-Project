@@ -4,26 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.navigation.fragment.findNavController
 import personal.udacity.damc.com.cooperativeexpenses.R
 import personal.udacity.damc.com.cooperativeexpenses.databinding.FragmentInsideGroupExpenseBinding
-import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.GroupExpense
-import personal.udacity.damc.com.cooperativeexpenses.expenses.model.getGroupExpenseSum
 import personal.udacity.damc.com.cooperativeexpenses.expenses.view.adapters.ExpensesInsideGroupAdapter
 import personal.udacity.damc.com.cooperativeexpenses.expenses.viewmodel.ExpensesViewModel
 
 class FragmentInsideGroupExpense : Fragment() {
-
-    private val scopeOfIO = CoroutineScope(Dispatchers.IO)
 
     private lateinit var binding: FragmentInsideGroupExpenseBinding
     private val viewModel by lazy {
@@ -45,10 +37,7 @@ class FragmentInsideGroupExpense : Fragment() {
 
         binding.floatingActionButton.setOnClickListener {
 //            getGroupExpenseSum(viewModel._listOfExpenses.value!!, expenseGroup)
-            //Toast.makeText(requireContext(), "CLICKED", Toast.LENGTH_SHORT).show()
-            viewModel.getAll()
-            viewModel.addExpense(viewModel._listOfExpenses.value!![11])
-
+            findNavController().navigate(FragmentInsideGroupExpenseDirections.actionFragmentInsideGroupExpenseToFragmentNewExpense(expenseGroup))
         }
 
         binding.includedLayout.txtItemExpanseName.text = expenseGroup.groupName

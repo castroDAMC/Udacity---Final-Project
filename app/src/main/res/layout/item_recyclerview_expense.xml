@@ -17,9 +17,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,8 +48,8 @@
                     android:id="@+id/txt_item_expanse_target"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
                     android:fontFamily="@font/roboto"
+                    android:textSize="16sp"
                     app:displayTargetByGroup="@{group.target}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/txt_item_expanse_name"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -60,20 +58,20 @@
                     tools:text="Target: $500" />
 
                 <TextView
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_updatestring"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/expense_last_update"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_item_expanse_name" />
 
                 <TextView
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_percentual"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:textSize="14sp"
                     app:displayPercentage="@{group.percentage}"
                     app:layout_constraintBottom_toBottomOf="@+id/txt_item_expanse_date"
@@ -84,11 +82,11 @@
                     tools:text="Used: 60%" />
 
                 <TextView
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/txt_item_expanse_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/roboto"
                     android:text="@{group.lastUpdate}"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/txt_item_expanse_updatestring"
