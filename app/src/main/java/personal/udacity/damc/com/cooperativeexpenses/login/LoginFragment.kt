@@ -5,21 +5,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import personal.udacity.damc.com.cooperativeexpenses.R
-import personal.udacity.damc.com.cooperativeexpenses.databinding.FragmentLoginBinding
 import personal.udacity.damc.com.cooperativeexpenses.expenses.MainPageExpenses
+
 
 class LoginFragment : Fragment() {
 
     private val loginViewModel by viewModels<LoginViewModel>()
-    private lateinit var binding: FragmentLoginBinding
 
+    lateinit var btnLogin : Button
+    lateinit var loginEmail: EditText
+    lateinit var loginPassword: EditText
+    lateinit var txtFirstAccessClickHere: TextView
+    lateinit var motionLayout: MotionLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,11 +34,24 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        setupBinding(inflater, container)
+        val view: View = inflater.inflate(R.layout.fragment_login, container, false)
+
+        btnLogin = view.findViewById(R.id.btn_login)
+        loginEmail = view.findViewById(R.id.edt_login_email)
+        loginPassword = view.findViewById(R.id.edt_login_password)
+        txtFirstAccessClickHere = view.findViewById(R.id.txt_first_access_click_here)
+        motionLayout = view.findViewById(R.id.login_motion_layout)
+
+
+        setClickListeners()
+
+        return view
+
+//        setupBinding(inflater, container)
         setClickListeners()
 
 
-        return binding.root
+//        return binding.root
     }
 
     private fun setClickListeners() {
@@ -41,13 +61,13 @@ class LoginFragment : Fragment() {
 
 
 
-    private fun setupBinding(inflater: LayoutInflater, container: ViewGroup?) {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-
-        binding.viewModel = loginViewModel
-        binding.lifecycleOwner = this
-    }
+//    private fun setupBinding(inflater: LayoutInflater, container: ViewGroup?) {
+//        binding =
+//            DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+//
+//        binding.viewModel = loginViewModel
+//        binding.lifecycleOwner = this
+//    }
 
     override fun onStart() {
         super.onStart()
@@ -83,26 +103,28 @@ class LoginFragment : Fragment() {
     }
 
     private fun setLoginClickListener() {
-        binding.btnLogin.setOnClickListener {
-            if (binding.edtLoginEmail.text.isNullOrBlank() || binding.edtLoginPassword.text.isNullOrBlank()) {
+        btnLogin.setOnClickListener {
+            if (loginEmail.text.isNullOrBlank() || loginPassword.text.isNullOrBlank()) {
                 Toast.makeText(context, "Please, insert email and password", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 loginWithFirebase(
-                    binding.edtLoginEmail.text.toString(),
-                    binding.edtLoginPassword.text.toString()
+                    loginEmail.text.toString(),
+                    loginPassword.text.toString()
                 )
             }
         }
     }
 
     private fun setNewUserClickListener() {
-        binding.txtFirstAccessClickHere.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_loginFragment_to_newUserFragment)
+        txtFirstAccessClickHere.setOnClickListener {
+            Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_newUserFragment)
         }
     }
 
     private fun loginWithFirebase(email: String, password: String) {
+        motionLayout.transitionToEnd()
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
 //                Toast.makeText(
@@ -112,6 +134,7 @@ class LoginFragment : Fragment() {
 //                ).show()
             }
             .addOnFailureListener {
+                motionLayout.transitionToStart()
                 Toast.makeText(context, "FAIL LOGIN", Toast.LENGTH_SHORT).show()
             }
     }
