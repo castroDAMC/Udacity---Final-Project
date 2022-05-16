@@ -1,7 +1,7 @@
 package personal.udacity.damc.com.cooperativeexpenses.expenses.model
 
 data class Expense(
-    var id: String,
+    var id: Int,
     var group: String,
     var name: String,
     var value: String,

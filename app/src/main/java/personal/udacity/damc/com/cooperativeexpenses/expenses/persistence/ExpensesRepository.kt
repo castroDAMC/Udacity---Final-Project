@@ -1,6 +1,7 @@
 package personal.udacity.damc.com.cooperativeexpenses.expenses.persistence
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.map
@@ -34,5 +35,12 @@ class ExpensesRepository(private val database: ExpensesDatabase) {
                     )
                 )
         }
+    }
+
+    fun deleteExpense(expense: Expense) {
+        scopeOfIO.launch{
+            database.userDao().deleteExpensesByID(expense.id)
+        }
+
     }
 }

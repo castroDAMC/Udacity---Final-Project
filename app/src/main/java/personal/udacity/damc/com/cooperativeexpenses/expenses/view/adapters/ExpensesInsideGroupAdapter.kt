@@ -1,5 +1,6 @@
 package personal.udacity.damc.com.cooperativeexpenses.expenses.view.adapters
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,13 +12,14 @@ import personal.udacity.damc.com.cooperativeexpenses.expenses.model.Expense
 import personal.udacity.damc.com.cooperativeexpenses.expenses.model.getGroupExpenseSum
 
 class ExpensesInsideGroupAdapter(
-    private val listOfExpenses: MutableLiveData<List<Expense>>
+    private val listOfExpenses: MutableLiveData<List<Expense>>,
+    private val function: (expense: Expense) -> Unit
 ) : RecyclerView.Adapter<ExpensesInsideGroupAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: ItemInsideGroupExpenseBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        //
-        fun onBind(expense: Expense, target: String, position: Int) {
+
+        fun onBind(expense: Expense, target: String, position: Int, function: (expense: Expense) -> Unit) {
 
             binding.let {
                 it.expense = expense
@@ -29,7 +31,25 @@ class ExpensesInsideGroupAdapter(
                     else -> {itemView.context.getColor(R.color.gray_2)}
                 })
             }
+
+            itemView.setOnLongClickListener {
+                AlertDialog.Builder(it.context)
+                    .setTitle("Delete")
+                    .setMessage("Do you really wanna delete " + expense.name +  " register?")
+                    .setPositiveButton(
+                        "Yes, I AM"
+                    ) { _, _ ->
+                        function(expense)
+                    }
+                    .setNegativeButton("MY MISTAKE") { _, _ ->
+                    }
+                    .create()
+                    .show()
+
+                true
+            }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,7 +65,7 @@ class ExpensesInsideGroupAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemBind = listOfExpenses.value!![position]
-        holder.onBind(itemBind, getGroupExpenseSum(listOfExpenses.value!! as ArrayList<Expense>,itemBind.group), position)
+        holder.onBind(itemBind, getGroupExpenseSum(listOfExpenses.value!! as ArrayList<Expense>,itemBind.group), position, function)
     }
 
     override fun getItemCount(): Int {

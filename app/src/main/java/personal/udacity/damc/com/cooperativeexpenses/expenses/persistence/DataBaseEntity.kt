@@ -29,7 +29,7 @@ interface ExpensesDAO{
     fun getAll(): LiveData<List<ExpensesDataBaseEntity>>
 
     @Query("SELECT * FROM ExpensesDataBaseEntity WHERE id=:id")
-    fun getExpenseById(id: String): LiveData<ExpensesDataBaseEntity>
+    fun getExpenseById(id: Int): LiveData<ExpensesDataBaseEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOneExpense(expense: ExpensesDataBaseEntity)
@@ -37,14 +37,14 @@ interface ExpensesDAO{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertExpensesInBatch(vararg expense: ExpensesDataBaseEntity)
 
-//    @Query("DELETE FROM expensesdatabaseentity WHERE approach_date<:today")
-//    fun deleteOldExpenses(today: String)
+    @Query("DELETE FROM ExpensesDataBaseEntity WHERE id=:id")
+    fun deleteExpensesByID(id: Int)
 }
 
 fun List<ExpensesDataBaseEntity>.asDomainModel(): List<Expense>{
     return map{
         Expense(
-            id = it.id.toString(),
+            id = it.id,
             group = it.group,
             name = it.name,
             value = it.value,
