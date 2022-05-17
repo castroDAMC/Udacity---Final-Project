@@ -29,8 +29,8 @@ interface NetworkEmailValidation {
 
 }
 
-object NasaAPI {
-    val retrofitService : NetworkEmailValidation by lazy { retrofit.create(NetworkEmailValidation::class.java) }
+object EmailValidatorAPI {
+    val retrofitService: NetworkEmailValidation by lazy { retrofit.create(NetworkEmailValidation::class.java) }
 }
 
 object Constants {
